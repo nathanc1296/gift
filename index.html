@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>A Little Gift for Ashlee ❤️</title>
+<title>A Little Gift for Ashlee </title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
 
@@ -14,13 +14,19 @@
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     font-family:Poppins,sans-serif;
     min-height:100vh;
     display:flex;
     justify-content:center;
-    align-items:center;
-    overflow:hidden;
+    align-items:flex-start;
+    overflow-x:hidden;
+    overflow-y:auto;
+    padding:40px 20px;
     background:linear-gradient(-45deg,#ffd6e8,#ffeef7,#fbe4ff,#dff8ff);
     background-size:400% 400%;
     animation:bg 15s ease infinite;
@@ -34,7 +40,8 @@ body{
 
 .container{
     position:relative;
-    width:min(90%,700px);
+    width:min(92%,700px);
+    margin:40px auto;
     padding:50px;
     border-radius:30px;
     background:rgba(255,255,255,.75);
@@ -53,6 +60,7 @@ h1{
 .subtitle{
     color:#666;
     margin-bottom:35px;
+    line-height:1.6;
 }
 
 button{
@@ -62,6 +70,7 @@ button{
     background:linear-gradient(135deg,#ff5fa2,#ff82b5);
     color:white;
     font-size:1.1rem;
+    font-weight:600;
     cursor:pointer;
     transition:.3s;
     box-shadow:0 12px 25px rgba(255,95,162,.4);
@@ -69,6 +78,10 @@ button{
 
 button:hover{
     transform:translateY(-4px) scale(1.05);
+}
+
+button:active{
+    transform:scale(.97);
 }
 
 .message{
@@ -83,7 +96,7 @@ button:hover{
 .message.show{
     opacity:1;
     transform:translateY(0);
-    max-height:600px;
+    max-height:1200px;
 }
 
 .message h2{
@@ -113,10 +126,17 @@ button:hover{
     color:#777;
 }
 
+.footer{
+    margin-top:35px;
+    color:#888;
+    font-size:.95rem;
+}
+
 .sparkle{
     position:absolute;
     pointer-events:none;
     animation:floatUp linear forwards;
+    z-index:999;
 }
 
 @keyframes floatUp{
@@ -130,19 +150,51 @@ button:hover{
     }
 }
 
-.footer{
-    margin-top:35px;
-    color:#888;
-    font-size:.95rem;
+/* Mobile */
+@media (max-width:600px){
+
+    body{
+        padding:25px 15px;
+    }
+
+    .container{
+        padding:30px 20px;
+        border-radius:22px;
+        margin:20px auto;
+    }
+
+    h1{
+        font-size:2.2rem;
+    }
+
+    .subtitle{
+        font-size:.95rem;
+    }
+
+    .note{
+        padding:20px;
+        font-size:.95rem;
+    }
+
+    button{
+        width:100%;
+        padding:16px;
+        font-size:1rem;
+    }
+
+    .signature{
+        font-size:1.3rem;
+    }
+
 }
 </style>
-</head>
 
+</head>
 <body>
 
 <div class="container">
 
-<h1>Hello Ashlee ❤️</h1>
+<h1>Hello Ashlee </h1>
 
 <p class="subtitle">
 Someone wanted to leave you a little smile today.
@@ -158,7 +210,7 @@ Push Me ✨
 
 <div class="note">
 
-<p style="font-size:1.3rem;margin-bottom:20px;">
+<p style="font-size:1.35rem;font-weight:600;color:#ff4d8d;margin-bottom:20px;">
 You're gorgeous.
 </p>
 
@@ -168,9 +220,15 @@ You deserve kindness, patience, encouragement, and to be reminded just how wonde
 </p>
 
 <p style="margin-top:18px;">
-I hope you smile a little today.
-The world is brighter with you in it.
-🌸
+You have a smile that brightens rooms, a heart that's easy to care about, and a way of making the people around you happier just by being yourself.
+</p>
+
+<p style="margin-top:18px;">
+I hope whenever you're feeling unsure, you remember that someone out there believes in you, appreciates you, and wants to see you smile.
+</p>
+
+<p style="margin-top:20px;font-size:1.1rem;">
+🌸 You are enough exactly as you are. 🌸
 </p>
 
 <div class="signature">
@@ -192,35 +250,61 @@ The world is brighter with you in it.
 </div>
 
 <script>
-const gift=document.getElementById("gift");
+const gift = document.getElementById("gift");
+let opened = false;
 
 function showGift(){
 
-gift.classList.add("show");
+    gift.classList.add("show");
 
-for(let i=0;i<45;i++){
-setTimeout(createHeart,i*35);
-}
+    if(!opened){
+
+        opened = true;
+
+        for(let i=0;i<60;i++){
+            setTimeout(createHeart,i*35);
+        }
+
+        setTimeout(()=>{
+            window.scrollTo({
+                top:document.body.scrollHeight,
+                behavior:"smooth"
+            });
+        },400);
+
+    }
+
 }
 
 function createHeart(){
 
-const heart=document.createElement("div");
+    const heart=document.createElement("div");
 
-heart.className="sparkle";
+    heart.className="sparkle";
 
-const icons=["💖","💕","🌸","✨","💗","🩷","💝"];
+    const icons=[
+        "💖",
+        "💕",
+        "💗",
+        "💝",
+        "🌸",
+        "✨",
+        "🩷",
+        "🌷"
+    ];
 
-heart.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+    heart.innerHTML=icons[Math.floor(Math.random()*icons.length)];
 
-heart.style.left=Math.random()*window.innerWidth+"px";
-heart.style.top=(window.innerHeight-40)+"px";
-heart.style.fontSize=(18+Math.random()*24)+"px";
-heart.style.animationDuration=(3+Math.random()*2)+"s";
+    heart.style.left=Math.random()*window.innerWidth+"px";
+    heart.style.top=(window.scrollY+window.innerHeight-40)+"px";
+    heart.style.fontSize=(18+Math.random()*24)+"px";
+    heart.style.animationDuration=(3+Math.random()*2)+"s";
 
-document.body.appendChild(heart);
+    document.body.appendChild(heart);
 
-setTimeout(()=>heart.remove(),5000);
+    setTimeout(()=>{
+        heart.remove();
+    },5000);
 
 }
 </script>
