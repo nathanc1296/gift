@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Little Gift for Ashlee ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Poppins,sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:linear-gradient(-45deg,#ffd6e8,#ffeef7,#fbe4ff,#dff8ff);
+    background-size:400% 400%;
+    animation:bg 15s ease infinite;
+}
+
+@keyframes bg{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.container{
+    position:relative;
+    width:min(90%,700px);
+    padding:50px;
+    border-radius:30px;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(15px);
+    text-align:center;
+    box-shadow:0 25px 60px rgba(0,0,0,.15);
+}
+
+h1{
+    font-family:Pacifico,cursive;
+    font-size:3rem;
+    color:#ff4d8d;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#666;
+    margin-bottom:35px;
+}
+
+button{
+    padding:16px 36px;
+    border:none;
+    border-radius:999px;
+    background:linear-gradient(135deg,#ff5fa2,#ff82b5);
+    color:white;
+    font-size:1.1rem;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 12px 25px rgba(255,95,162,.4);
+}
+
+button:hover{
+    transform:translateY(-4px) scale(1.05);
+}
+
+.message{
+    margin-top:35px;
+    opacity:0;
+    transform:translateY(20px);
+    transition:.8s;
+    max-height:0;
+    overflow:hidden;
+}
+
+.message.show{
+    opacity:1;
+    transform:translateY(0);
+    max-height:600px;
+}
+
+.message h2{
+    color:#ff4d8d;
+    margin-bottom:15px;
+}
+
+.note{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    line-height:1.8;
+    color:#555;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.signature{
+    margin-top:20px;
+    font-family:Pacifico;
+    font-size:1.5rem;
+    color:#ff6fa9;
+}
+
+.quote{
+    margin-top:30px;
+    font-style:italic;
+    color:#777;
+}
+
+.sparkle{
+    position:absolute;
+    pointer-events:none;
+    animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0) scale(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-220px) scale(1.6);
+        opacity:0;
+    }
+}
+
+.footer{
+    margin-top:35px;
+    color:#888;
+    font-size:.95rem;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Hello Ashlee ❤️</h1>
+
+<p class="subtitle">
+Someone wanted to leave you a little smile today.
+</p>
+
+<button onclick="showGift()">
+Push Me ✨
+</button>
+
+<div class="message" id="gift">
+
+<h2>Just For You 💕</h2>
+
+<div class="note">
+
+<p style="font-size:1.3rem;margin-bottom:20px;">
+You're gorgeous.
+</p>
+
+<p>
+And if today feels heavy—or even if it doesn't—you can seek reassurance from me anytime.
+You deserve kindness, patience, encouragement, and to be reminded just how wonderful you are.
+</p>
+
+<p style="margin-top:18px;">
+I hope you smile a little today.
+The world is brighter with you in it.
+🌸
+</p>
+
+<div class="signature">
+❤️
+</div>
+
+</div>
+
+<div class="quote">
+"Some people make the world feel softer just by being themselves."
+</div>
+
+<div class="footer">
+⭐ Keep shining. Keep laughing. Keep being you. ⭐
+</div>
+
+</div>
+
+</div>
+
+<script>
+const gift=document.getElementById("gift");
+
+function showGift(){
+
+gift.classList.add("show");
+
+for(let i=0;i<45;i++){
+setTimeout(createHeart,i*35);
+}
+}
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.className="sparkle";
+
+const icons=["💖","💕","🌸","✨","💗","🩷","💝"];
+
+heart.innerHTML=icons[Math.floor(Math.random()*icons.length)];
+
+heart.style.left=Math.random()*window.innerWidth+"px";
+heart.style.top=(window.innerHeight-40)+"px";
+heart.style.fontSize=(18+Math.random()*24)+"px";
+heart.style.animationDuration=(3+Math.random()*2)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),5000);
+
+}
+</script>
+
+</body>
+</html>
